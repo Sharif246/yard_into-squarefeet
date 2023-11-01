@@ -1,30 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Area Converter</title>
+    <title>Area Converter - Glass Morphism</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            background: linear-gradient(to bottom right, #c4c4c4, #ffffff);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
         }
         .converter {
-            margin: 20px;
             padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input[type="number"] {
+            padding: 8px;
+            margin: 8px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
-            background-color: #f7f7f7;
-            max-width: 400px;
-            margin: 0 auto;
+        }
+        button[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 10px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="converter">
         <h2>Yard to Square Feet Converter</h2>
-        <form id="areaConverterForm">
+        <form id="areaConverterForm" onsubmit="convertArea(); return false;">
             <label for="yards">Enter Yards:</label>
             <input type="number" id="yards" step="any" placeholder="Enter Yards" required>
-            <button type="button" onclick="convertArea()">Convert</button>
+            <button type="submit">Convert</button>
         </form>
         <p id="result"></p>
     </div>
@@ -39,6 +69,8 @@
             } else {
                 document.getElementById("result").innerHTML = "Please enter a valid number of yards.";
             }
+
+            return false; // Prevents the form from actually submitting
         }
     </script>
 </body>
